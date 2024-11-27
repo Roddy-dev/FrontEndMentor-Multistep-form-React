@@ -36,8 +36,10 @@ export const Plan = () => {
             value="arcade"
           />
         </Field>
-        <RenderCost />
-
+        <RenderCost
+          plan={state.plan}
+          yearBillingCycle={state.yearBillingCycle}
+        />
         <Field label="Advanced">
           {/* <Input
             type="checkbox"
@@ -51,7 +53,10 @@ export const Plan = () => {
             value="advanced"
           />
         </Field>
-        <RenderCost />
+        <RenderCost
+          plan={state.plan}
+          yearBillingCycle={state.yearBillingCycle}
+        />
 
         <Field label="Pro">
           {/* <Input
@@ -66,8 +71,10 @@ export const Plan = () => {
             value="pro"
           />
         </Field>
-        <RenderCost />
-
+        <RenderCost
+          plan={state.plan}
+          yearBillingCycle={state.yearBillingCycle}
+        />
         <Field label="Monthly / Yearly">
           <input
             type="checkbox"

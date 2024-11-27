@@ -36,7 +36,10 @@ export const Confirm = () => {
         <SectionRow>
           <div>Plan</div>
           <div>{state.plan}</div>
-          <RenderCost />
+          <RenderCost
+            plan={state.plan}
+            yearBillingCycle={state.yearBillingCycle}
+          />
         </SectionRow>
         <SectionRow>
           <div>Monthly or Yearly payment</div>

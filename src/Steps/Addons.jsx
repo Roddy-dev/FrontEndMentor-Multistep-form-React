@@ -47,7 +47,7 @@ export const Addons = () => {
           />
         </Field>
         <div className="button-row">
-          <Link className={`btn btn-secondary`} to="/education">
+          <Link className={`btn btn-secondary`} to="/plan">
             {"<"} Previous
           </Link>
           <Button>Next {">"}</Button>
