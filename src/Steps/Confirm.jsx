@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useAppState } from "../state";
-import { Button, Form, Section, SectionRow } from "../Forms";
+import { Button, Form, RenderCost, Section, SectionRow } from "../Forms";
 
 export const Confirm = () => {
   const [state] = useAppState();
@@ -20,32 +20,33 @@ export const Confirm = () => {
       <h1 className="mb-4">Confirm</h1>
       <Section title="Personal info" url="/">
         <SectionRow>
-          <div>First name</div>
-          <div>{state.firstName}</div>
-        </SectionRow>
-        <SectionRow>
-          <div>Last name</div>
-          <div>{state.lastName}</div>
+          <div>Full name</div>
+          <div>{state.name}</div>
         </SectionRow>
         <SectionRow>
           <div>Email</div>
           <div>{state.email}</div>
         </SectionRow>
-      </Section>
-      <Section title="Education" url="/education">
         <SectionRow>
-          <div>University</div>
-          <div>{state.university}</div>
-        </SectionRow>
-        <SectionRow>
-          <div>Degree</div>
-          <div>{state.degree}</div>
+          <div>Last name</div>
+          <div>{state.phoneno}</div>
         </SectionRow>
       </Section>
-      <Section title="About" url="/about">
+      <Section title="Plan" url="/plan">
         <SectionRow>
-          <div>About me</div>
-          <div>{state.about}</div>
+          <div>Plan</div>
+          <div>{state.plan}</div>
+          <RenderCost />
+        </SectionRow>
+        <SectionRow>
+          <div>Monthly or Yearly payment</div>
+          <div>{state.yearBillingCycle ? "yearly" : "monthly"}</div>
+        </SectionRow>
+      </Section>
+      <Section title="Add-ons" url="/addons">
+        <SectionRow>
+          {/* <div>Add-ons</div> */}
+          <div>{state.addons}</div>
         </SectionRow>
       </Section>
       <div className="d-flex justify-content-start">

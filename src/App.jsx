@@ -1,8 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { AppProvider } from "./state";
 import { Contact } from "./Steps/Contact";
-import { Education } from "./Steps/Education";
-import { About } from "./Steps/About";
+import { Plan } from "./Steps/Plan";
+import { Addons } from "./Steps/Addons";
 import { Confirm } from "./Steps/Confirm";
 import { Stepper } from "./Steps/Stepper";
 import { Thanks } from "./Steps/Thanks";
@@ -16,8 +16,8 @@ function App() {
           <Stepper />
           <Routes>
             <Route path="/" element={<Contact />} />
-            <Route path="/education" element={<Education />} />
-            <Route path="/about" element={<About />} />
+            <Route path="/plan" element={<Plan />} />
+            <Route path="/addons" element={<Addons />} />
             <Route path="/confirm" element={<Confirm />} />
             <Route path="/thanks" element={<Thanks />} />
           </Routes>

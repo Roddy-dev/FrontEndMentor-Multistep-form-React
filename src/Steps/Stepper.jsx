@@ -16,16 +16,16 @@ export const Stepper = () => {
       <div className="navbar-collapse collapse">
         <ol className="navbar-nav">
           <li className="step nav-item">
-            <span className={getLinkClass("/")}>Contact</span>
+            <span className={getLinkClass("/")}>Your Info</span>
           </li>
           <li className="step nav-item">
-            <span className={getLinkClass("/education")}>Education</span>
+            <span className={getLinkClass("/plan")}>Select Plan</span>
           </li>
           <li className="step nav-item">
-            <span className={getLinkClass("/about")}>About</span>
+            <span className={getLinkClass("/addons")}>Add-ons</span>
           </li>
           <li className="step nav-item">
-            <span className={getLinkClass("/confirm")}>Confirm</span>
+            <span className={getLinkClass("/summary")}>Summary</span>
           </li>
         </ol>
       </div>

@@ -16,25 +16,23 @@ export const Contact = () => {
 
   const saveData = (data) => {
     setState({ ...state, ...data });
-    navigate("/education");
+    navigate("/plan");
   };
 
   return (
     <Form onSubmit={handleSubmit(saveData)}>
       <fieldset>
-        <legend>Contact</legend>
-        <Field label="First name" error={errors?.firstName}>
+        <legend>
+          <h2>Personal Info</h2>
+        </legend>
+        <p>Please provide your name, email address and phone number</p>
+        <Field label="Name" error={errors?.name}>
           <Input
-            {...register("firstName", { required: "first name is required" })}
-            id="first-name"
+            {...register("name", { required: " name is required" })}
+            id="name"
           />
         </Field>
-        <Field label="Last name" error={errors?.lastName}>
-          <Input
-            {...register("lastName", { required: "Last name is required" })}
-            id="last-name"
-          />
-        </Field>
+
         <Field label="Email" error={errors?.email}>
           <Input
             {...register("email", { required: "Email is required" })}
@@ -42,22 +40,10 @@ export const Contact = () => {
             id="email"
           />
         </Field>
-        <Field label="Password" error={errors?.password}>
+        <Field label="Phone Number" error={errors?.phoneno}>
           <Input
-            {...register("password", { required: "Password is required" })}
-            type="password"
-            id="password"
-          />
-        </Field>
-        <Field label="Confirm password" error={errors?.confirmPassword}>
-          <Input
-            {...register("confirmPassword", {
-              required: "Confirm the password",
-              validate: (value) =>
-                value === watchPassword || "The passwords do not match",
-            })}
-            type="password"
-            id="password-confirm"
+            {...register("phoneno", { required: "phone number is required" })}
+            id="phoneno"
           />
         </Field>
         <Button>Next {">"}</Button>
