@@ -7,7 +7,9 @@ import { Button, Field, Form, Input, RenderCost } from "../Forms";
 
 export const Plan = () => {
   const [state, setState] = useAppState();
-  const { handleSubmit, register } = useForm({ defaultValues: state });
+  const { handleSubmit, register, setValue } = useForm({
+    defaultValues: state,
+  });
   const navigate = useNavigate();
 
   const saveData = (data) => {
@@ -36,10 +38,7 @@ export const Plan = () => {
             value="arcade"
           />
         </Field>
-        <RenderCost
-          plan={state.plan}
-          yearBillingCycle={state.yearBillingCycle}
-        />
+        <RenderCost plan="arcade" yearBillingCycle={state.yearBillingCycle} />
         <Field label="Advanced">
           {/* <Input
             type="checkbox"
@@ -53,10 +52,7 @@ export const Plan = () => {
             value="advanced"
           />
         </Field>
-        <RenderCost
-          plan={state.plan}
-          yearBillingCycle={state.yearBillingCycle}
-        />
+        <RenderCost plan="advanced" yearBillingCycle={state.yearBillingCycle} />
 
         <Field label="Pro">
           {/* <Input
@@ -71,16 +67,17 @@ export const Plan = () => {
             value="pro"
           />
         </Field>
-        <RenderCost
-          plan={state.plan}
-          yearBillingCycle={state.yearBillingCycle}
-        />
+        <RenderCost plan="pro" yearBillingCycle={state.yearBillingCycle} />
         <Field label="Monthly / Yearly">
-          <input
+          <Input
             type="checkbox"
-            value="yearly"
+            value={state.yearBillingCycle}
             // defaultValue={false}
+            // onChange=
+            // value={state.yearBillingCycle}
             {...register("yearBillingCycle")}
+            // {...setValue("yearBillingCycle", true)}
+            {...setValue("yearBillingCycle")}
           />
         </Field>
 
