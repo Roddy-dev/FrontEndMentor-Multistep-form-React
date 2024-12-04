@@ -1,7 +1,14 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useAppState } from "../state";
-import { Button, Form, RenderCost, Section, SectionRow } from "../Forms";
+import {
+  Button,
+  Form,
+  RenderCost,
+  RenderAddons,
+  Section,
+  SectionRow,
+} from "../Forms";
 
 export const Confirm = () => {
   const [state] = useAppState();
@@ -14,6 +21,8 @@ export const Confirm = () => {
     navigate("/thanks");
     // this is where we could submit to the server
   };
+
+  // console.log(state);
 
   return (
     <Form onSubmit={handleSubmit(submitData)}>
@@ -35,11 +44,15 @@ export const Confirm = () => {
       <Section title="Plan" url="/plan">
         <SectionRow>
           <div>Plan</div>
-          <div>{state.plan}</div>
-          <RenderCost
-            plan={state.plan}
-            yearBillingCycle={state.yearBillingCycle}
-          />
+          <div>
+            {state.plan?.charAt(0).toUpperCase() + state.plan?.slice(1)}
+            <>&nbsp;</>
+
+            <RenderCost
+              plan={state.plan}
+              yearBillingCycle={state.yearBillingCycle}
+            />
+          </div>
         </SectionRow>
         <SectionRow>
           <div>Monthly or Yearly payment</div>
@@ -48,8 +61,35 @@ export const Confirm = () => {
       </Section>
       <Section title="Add-ons" url="/addons">
         <SectionRow>
-          {/* <div>Add-ons</div> */}
-          <div>{state.addons}</div>
+          {/* <ul>
+            {state.servicesAdded.map(
+              (item, index) => item && <li key={index}>{item}</li>
+            )}
+          </ul> */}
+          <div>
+            {state.hasService ? (
+              <RenderAddons
+                servicesAdded="hasService"
+                yearly={state.yearBillingCycle}
+              />
+            ) : null}
+          </div>
+          <div>
+            {state.hasStorage ? (
+              <RenderAddons
+                servicesAdded="hasStorage"
+                yearly={state.yearBillingCycle}
+              />
+            ) : null}
+          </div>
+          <div>
+            {state.hasProfile ? (
+              <RenderAddons
+                servicesAdded="hasProfile"
+                yearly={state.yearBillingCycle}
+              />
+            ) : null}
+          </div>
         </SectionRow>
       </Section>
       <div className="d-flex justify-content-start">

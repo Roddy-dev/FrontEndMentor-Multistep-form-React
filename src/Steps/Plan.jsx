@@ -7,13 +7,29 @@ import { Button, Field, Form, Input, RenderCost } from "../Forms";
 
 export const Plan = () => {
   const [state, setState] = useAppState();
-  const { handleSubmit, register, setValue } = useForm({
-    defaultValues: state,
+  // so it turns out, on 1st render plan and billing are not on state until savedata is
+  // performed. You can set default values in hook form, but it doesn't help cost render
+  // Think this is where react hook form watch comes in.
+  const { handleSubmit, register, watch } = useForm({
+    //   defaultValues: state,
+    // });
+
+    defaultValues: {
+      plan: "arcade",
+      yearBillingCycle: false,
+      // ...state,
+    },
+    values: {
+      plan: state.plan,
+      yearBillingCycle: state.yearBillingCycle,
+    },
   });
+  // console.log("state", state);
   const navigate = useNavigate();
 
   const saveData = (data) => {
     setState({ ...state, ...data });
+    console.log("state", state);
     navigate("/addons");
   };
 
@@ -38,7 +54,10 @@ export const Plan = () => {
             value="arcade"
           />
         </Field>
-        <RenderCost plan="arcade" yearBillingCycle={state.yearBillingCycle} />
+        <RenderCost
+          plan="arcade"
+          yearBillingCycle={watch("yearBillingCycle")}
+        />
         <Field label="Advanced">
           {/* <Input
             type="checkbox"
@@ -52,7 +71,10 @@ export const Plan = () => {
             value="advanced"
           />
         </Field>
-        <RenderCost plan="advanced" yearBillingCycle={state.yearBillingCycle} />
+        <RenderCost
+          plan="advanced"
+          yearBillingCycle={watch("yearBillingCycle")}
+        />
 
         <Field label="Pro">
           {/* <Input
@@ -67,17 +89,18 @@ export const Plan = () => {
             value="pro"
           />
         </Field>
-        <RenderCost plan="pro" yearBillingCycle={state.yearBillingCycle} />
+        <RenderCost plan="pro" yearBillingCycle={watch("yearBillingCycle")} />
         <Field label="Monthly / Yearly">
           <Input
             type="checkbox"
-            value={state.yearBillingCycle}
+            // value={state.yearBillingCycle}
             // defaultValue={false}
             // onChange=
             // value={state.yearBillingCycle}
             {...register("yearBillingCycle")}
+            // defaultChecked
             // {...setValue("yearBillingCycle", true)}
-            {...setValue("yearBillingCycle")}
+            // {...setValue("yearBillingCycle")}
           />
         </Field>
 
