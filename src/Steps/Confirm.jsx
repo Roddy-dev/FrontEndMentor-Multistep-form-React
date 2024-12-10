@@ -25,7 +25,7 @@ export const Confirm = () => {
   // console.log(state);
 
   return (
-    <Form onSubmit={handleSubmit(submitData)}>
+    <Form onSubmit={handleSubmit(submitData)} className="flow-content">
       <h1 className="mb-4">Confirm</h1>
       <Section title="Personal info" url="/">
         <SectionRow>
@@ -93,7 +93,7 @@ export const Confirm = () => {
         </SectionRow>
       </Section>
       <div className="d-flex justify-content-start">
-        <Button>Submit</Button>
+        <Button className={`btn btn-secondary`}>Submit</Button>
       </div>
     </Form>
   );

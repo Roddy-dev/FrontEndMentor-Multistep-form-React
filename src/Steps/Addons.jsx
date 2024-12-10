@@ -13,6 +13,8 @@ export const Addons = () => {
       // state,
       //
     },
+    // if state has been updated and we go back to edit form,
+    // populate form with relevant checked checkboxes using useForm hook and values prop
     values: {
       hasService: state.hasService,
       hasStorage: state.hasStorage,
@@ -32,70 +34,48 @@ export const Addons = () => {
   };
 
   return (
-    <Form onSubmit={handleSubmit(saveData)}>
-      <fieldset>
-        <legend>
-          <h2>Pick Add-ons</h2>
-        </legend>
-        <p>Add-ons help enhance your gaming experience</p>
-        {/* <Field label="Online Services">
-          <Input
-            type="checkbox"
-            {...register("servicesAdded.0")}
-            value="Online Services"
-          />
-        </Field>
-        <Field label="Addional Storage">
-          <Input
-            type="checkbox"
-            {...register("servicesAdded.1")}
-            value="Addional Storage"
-          />
-        </Field>
-        <Field label="Customizable Profile">
-          <Input
-            type="checkbox"
-            {...register("servicesAdded.2")}
-            value="Customizable Profile"
-          />
-        </Field> */}
-        <hr />
-        <Field label="Online Services">
-          <Input
-            type="checkbox"
-            {...register("hasService")}
-            value={true}
-            onChange={onChange}
-          />
-        </Field>
-        <RenderAddons
-          servicesAdded="hasService"
-          displayTagline={true}
-          yearly={state.yearBillingCycle}
+    <Form onSubmit={handleSubmit(saveData)} className="flow-content">
+      {/* <fieldset> */}
+      {/* <legend> */}
+      <h2>Pick Add-ons</h2>
+      {/* </legend> */}
+      <p>Add-ons help enhance your gaming experience</p>
+      <Field label="Online Services">
+        <Input
+          type="checkbox"
+          {...register("hasService")}
+          value={true}
+          onChange={onChange}
         />
-        <Field label="Addional Storage">
-          <Input type="checkbox" {...register("hasStorage")} value={true} />
-        </Field>
-        <RenderAddons
-          servicesAdded="hasStorage"
-          displayTagline={true}
-          yearly={state.yearBillingCycle}
-        />
-        <Field label="Customizable Profile">
-          <Input type="checkbox" {...register("hasProfile")} value={true} />
-        </Field>
-        <RenderAddons
-          servicesAdded="hasProfile"
-          // displayTagline={true}
-          yearly={state.yearBillingCycle}
-        />
-        <div className="button-row">
-          <Link className={`btn btn-secondary`} to="/plan">
-            {"<"} Previous
-          </Link>
-          <Button>Next {">"}</Button>
-        </div>
-      </fieldset>
+      </Field>
+      <RenderAddons
+        servicesAdded="hasService"
+        displayTagline={true}
+        yearly={state.yearBillingCycle}
+      />
+      <Field label="Addional Storage">
+        <Input type="checkbox" {...register("hasStorage")} value={true} />
+      </Field>
+      <RenderAddons
+        servicesAdded="hasStorage"
+        displayTagline={true}
+        yearly={state.yearBillingCycle}
+      />
+      <Field label="Customizable Profile">
+        <Input type="checkbox" {...register("hasProfile")} value={true} />
+      </Field>
+      <RenderAddons
+        servicesAdded="hasProfile"
+        // displayTagline={true}
+        yearly={state.yearBillingCycle}
+      />
+      <div className="button-row">
+        <Link className={`btn`} to="/plan">
+          Previous
+        </Link>
+        <Button>Next</Button>
+      </div>
+      {/* </fieldset> */}
     </Form>
   );
 };

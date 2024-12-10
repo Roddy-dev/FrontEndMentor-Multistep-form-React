@@ -41,7 +41,7 @@ const plans = [
 ];
 
 export const RenderCost = (props) => {
-  // console.log(props);
+  console.log(props);
   const matchedPlan = plans
     .filter((plan) => {
       return plan.planDesc.toLowerCase().includes(props.plan);

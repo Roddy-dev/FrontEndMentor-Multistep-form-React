@@ -20,34 +20,43 @@ export const Contact = () => {
   };
 
   return (
-    <Form onSubmit={handleSubmit(saveData)}>
-      <fieldset>
-        <legend>
-          <h2>Personal Info</h2>
-        </legend>
-        <p>Please provide your name, email address and phone number</p>
-        <Field label="Name" error={errors?.name}>
-          <Input
-            {...register("name", { required: " name is required" })}
-            id="name"
-          />
-        </Field>
+    <Form
+      onSubmit={handleSubmit(saveData)}
+      className="flow-content flow-content--large"
+    >
+      {/* <fieldset> */}
+      {/* <legend> */}
+      <h2>Personal Info</h2>
+      {/* </legend> */}
+      <p>Please provide your name, email address and phone number</p>
+      <Field label="Name" error={errors?.name}>
+        <Input
+          {...register("name", { required: " name is required" })}
+          id="name"
+          style={errors?.name && { border: "2px solid red" }}
+          // className={errors?.myInput?.message ? styles["error"] : "no-error"}
+        />
+      </Field>
 
-        <Field label="Email" error={errors?.email}>
-          <Input
-            {...register("email", { required: "Email is required" })}
-            type="email"
-            id="email"
-          />
-        </Field>
-        <Field label="Phone Number" error={errors?.phoneno}>
-          <Input
-            {...register("phoneno", { required: "phone number is required" })}
-            id="phoneno"
-          />
-        </Field>
-        <Button>Next {">"}</Button>
-      </fieldset>
+      <Field label="Email" error={errors?.email}>
+        <Input
+          {...register("email", { required: "Email is required" })}
+          type="email"
+          id="email"
+          style={errors?.email && { border: "2px solid red" }}
+        />
+      </Field>
+      <Field label="Phone Number" error={errors?.phoneno}>
+        <Input
+          {...register("phoneno", { required: "phone number is required" })}
+          id="phoneno"
+          style={errors?.phoneno && { border: "2px solid red" }}
+        />
+      </Field>
+      <div className="button-row">
+        <Button>Next</Button>
+      </div>
+      {/* </fieldset> */}
     </Form>
   );
 };

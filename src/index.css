@@ -1,0 +1,418 @@
+/* change later to ubuntu font and see about gdpr solution */
+@font-face {
+  font-family: "Ubuntu";
+  font-style: normal;
+  font-weight: 400;
+  src: url("./assets/fonts/Ubuntu-Regular.ttf");
+}
+@font-face {
+  font-family: "Ubuntu";
+  font-style: normal;
+  font-weight: 500;
+  src: url("./assets/fonts/Ubuntu-Medium.ttf");
+}
+@font-face {
+  font-family: "Ubuntu";
+  font-style: normal;
+  font-weight: 700;
+  src: url("./assets/fonts/Ubuntu-Bold.ttf");
+}
+
+/* Custom properties */
+:root {
+  --spacer: 1rem;
+  --border-radius-sm: 5px;
+  --border-radius-lg: 12px;
+
+  --ff-primary: "Ubuntu", sans-serif;
+
+  --fw-700: 700;
+  --fw-500: 500;
+  --fw-400: 400;
+
+  --fs-200: 0.75rem;
+  --fs-300: 1rem;
+  --fs-400: 1.25rem;
+  --fs-500: 1.375rem;
+  --fs-600: 1.75rem;
+  --fs-900: 2.125rem;
+
+  /* widths Mobile: 375px Desktop: 1440px at 16px per em*/
+
+  --width-mobile: 23.4375em;
+  --width-desktop: 90em;
+
+  /* Primary colours */
+
+  --clr-primary-900: hsl(213, 96%, 18%);
+  --clr-primary-700: hsl(243, 100%, 62%);
+  --clr-primary-400: hsl(228, 100%, 84%);
+  --clr-primary-200: hsl(206, 94%, 87%);
+
+  /* Error red */
+  --clr-red-700: hsl(354, 84%, 57%);
+
+  /* Neutral colours */
+
+  --clr-neutral-600: hsl(231, 11%, 63%);
+  --clr-neutral-400: hsl(229, 24%, 87%);
+  --clr-neutral-300: hsl(217, 100%, 97%);
+  --clr-neutral-200: hsl(231, 100%, 99%);
+  --clr-neutral-100: hsl(0, 0%, 100%);
+}
+
+/* reset */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* a softer margin reset than just everything */
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+/* if we make a list a navbar or whatever remove list-style, otherwise we can still use list-styles if need be */
+ul[class],
+ol[class] {
+  list-style: none;
+  padding: 0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* reset rhf border inset */
+input {
+  border-style: solid;
+}
+
+/* Utility classes */
+
+.flow-content > * + * {
+  margin-top: var(--flow-space, var(--spacer));
+}
+
+.flow-content--large {
+  --flow-space: 3rem;
+}
+.container {
+  max-width: 70rem;
+  margin: 2rem auto;
+  background-color: var(--clr-neutral-100);
+}
+
+.split {
+  display: flex;
+  flex-direction: column;
+  /* gap: var(--spacer); */
+}
+
+/* general styling */
+body {
+  font-family: var(--ff-primary);
+  /* color that seems to inherit to most parts of the page */
+  color: var(--clr-neutral-600);
+  background-color: var(--clr-neutral-300);
+  min-height: 100vh;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+}
+
+.form-segment {
+  display: flex;
+  flex-direction: column;
+  /* align-items: left; */
+}
+
+.form-label {
+  align-self: self-start;
+}
+
+.btn {
+  /* edit as you see fit */
+  display: inline-block;
+  text-decoration: none;
+  /* text-transform: uppercase; */
+  letter-spacing: 0.1rem;
+  font-weight: 700;
+  font-size: 0.8rem;
+  color: inherit;
+  padding: 0.75em 1.5em;
+  border-radius: var(--border-radius-sm);
+  border: none;
+  /* background-color: var(--clr-accent-400); */
+  /* color: var(--clr-neutral-900); */
+}
+
+.btn-primary {
+  color: var(--clr-primary-200);
+  background-color: var(--clr-primary-900);
+}
+
+.btn-secondary {
+  color: var(--clr-primary-200);
+  background-color: var(--clr-primary-700);
+}
+
+/* if 1 button place on right, if 2 spread appart */
+/* only works with link and flex end in row */
+.button-row {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+.button-row > button {
+  margin-left: auto;
+}
+
+/* typography */
+
+h1,
+h2 {
+  color: var(--clr-primary-900);
+  font-size: var(--fs-900);
+}
+
+.form-label {
+  color: var(--clr-primary-900);
+  width: 100%;
+  text-align: left;
+}
+
+.error {
+  /* padding-left: auto; */
+  /* margin-right: 0; */
+  color: var(--clr-red-700);
+  float: right;
+}
+
+.form-segment > input {
+  line-height: 1.5rem;
+  border-radius: 5px;
+}
+
+.form-segment > input:focus {
+  outline: none;
+  border-color: var(--clr-primary-700);
+}
+
+/* .navbar-nav {
+  display: flex;
+  align-items: center;
+} */
+
+.nav-circle {
+  display: flex;
+  width: 5ch; /* Set this to slightly wider than the longest string */
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  color: var(--clr-neutral-100);
+  border: 2px solid var(--clr-neutral-400);
+  margin-right: 0;
+  /* margin-left: var(--spacer); */
+}
+
+.nav-item > .active {
+  background-color: var(--clr-primary-200);
+  color: var(--clr-neutral-600);
+}
+.nav-desc {
+  color: var(--clr-neutral-300);
+}
+.nav-step-no {
+  color: var(--clr-neutral-400);
+}
+.nav-details {
+  display: none;
+  /* flex-direction: column; */
+}
+
+/* main div of whole page */
+.app {
+}
+
+/* responsive sidebar */
+.split {
+  display: grid;
+  gap: 1rem;
+}
+
+.navbar-nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.stepper {
+  /* width: 375px;
+  height: 172px; */
+  /* display: flex; */
+  /* background-image: url("./assets/images/bg-sidebar-mobile.svg"); */
+  background-image: url("./assets/images/bg-sidebar-mobile.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 24px;
+  /* width: 100%; */
+}
+.navbar-nav > * + * {
+  /* in this instance flow-content messes with mobile nav, so remove margin top */
+}
+
+@media (min-width: 480px) {
+  .split {
+    /* gap: 2rem; */
+    grid-template-columns: 310px 1fr;
+  }
+  .navbar-nav {
+    flex-direction: column;
+    /* flex-wrap: wrap; see about this later doesn't wrap as expected */
+  }
+  .stepper {
+    width: 274px;
+    height: 568px;
+    background-image: url("./assets/images/bg-sidebar-desktop.svg");
+  }
+  .nav-details {
+    display: block;
+    text-align: left;
+    /* padding: var(--spacer); */
+  }
+  .container {
+    margin-top: 5rem;
+    border-radius: var(--border-radius-lg);
+    padding: var(--spacer);
+    /* padding: 0 var(--spacer); */
+
+    /* padding: 0;
+    margin: 0; */
+  }
+  .nav-circle {
+    margin-right: var(--spacer);
+  }
+}
+
+@media (max-width: 479px) {
+  /* fix for flow space on mobile navbar */
+  .nav-item {
+    margin-top: 0;
+  }
+}
+
+/* below is css from hook form tutorial - feel free to remove or repurpose classnames */
+
+/* body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+} */
+
+/* code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+} */
+
+/* .App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 24px;
+  width: 900px;
+  margin: 0 auto;
+}
+
+fieldset {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 600px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.section-row {
+  display: flex;
+  width: 100%;
+}
+
+.section-row div {
+  display: flex;
+  margin-bottom: 0.5rem;
+} */
+
+/* .section-row div:first-child {
+  width: 50%;
+}
+
+.section-row div:last-child {
+  width: 50%;
+} */
+
+/* .title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+form {
+  width: 100%;
+}
+
+.submit-form {
+  display: flex;
+  margin: 24px 0 auto 0;
+}
+
+a.active {
+  color: red;
+}
+
+*/
+
+/*
+.stepper ol {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.error {
+  display: flex;
+  width: 100%;
+  margin-top: 0.25rem;
+  font-size: 0.875em;
+  color: #dc3545;
+}
+
+label {
+  display: flex;
+}
+
+.button-row {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+} */

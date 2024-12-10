@@ -10,17 +10,19 @@ import "./App.css";
 
 function App() {
   return (
-    <div className="App">
+    <div className="app container">
       <AppProvider>
         <Router>
-          <Stepper />
-          <Routes>
-            <Route path="/" element={<Contact />} />
-            <Route path="/plan" element={<Plan />} />
-            <Route path="/addons" element={<Addons />} />
-            <Route path="/confirm" element={<Confirm />} />
-            <Route path="/thanks" element={<Thanks />} />
-          </Routes>
+          <div className="split">
+            <Stepper />
+            <Routes>
+              <Route path="/" element={<Contact />} />
+              <Route path="/plan" element={<Plan />} />
+              <Route path="/addons" element={<Addons />} />
+              <Route path="/confirm" element={<Confirm />} />
+              <Route path="/thanks" element={<Thanks />} />
+            </Routes>
+          </div>
         </Router>
       </AppProvider>
     </div>
