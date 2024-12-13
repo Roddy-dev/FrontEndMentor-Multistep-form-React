@@ -11,7 +11,7 @@ export const Stepper = () => {
     );
   };
 
-  console.log("location", location);
+  // console.log("location", location);
 
   // const getLinkClass = ({ isActive }) =>
   //   `nav-link ${isActive ? "active" : undefined}`;

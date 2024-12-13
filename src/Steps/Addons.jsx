@@ -23,10 +23,10 @@ export const Addons = () => {
   });
 
   const navigate = useNavigate();
-  console.log("state services", state.servicesAdded);
-  console.log("hasService", state.hasService);
-  console.log("hasStorage", state.hasStorage);
-  console.log("hasProfile", state.hasProfile);
+  // console.log("state services", state.servicesAdded);
+  // console.log("hasService", state.hasService);
+  // console.log("hasStorage", state.hasStorage);
+  // console.log("hasProfile", state.hasProfile);
 
   const saveData = (data) => {
     setState({ ...state, ...data });

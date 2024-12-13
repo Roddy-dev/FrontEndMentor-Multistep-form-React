@@ -22,7 +22,7 @@ const addons = [
     id: 2,
     type: "hasStorage",
     yearly: false,
-    title: "Online Service",
+    title: "Additional Storage",
     costDesc: "$2/mp",
     tagLine: "Extra 1TB of cloud save",
   },
@@ -30,7 +30,7 @@ const addons = [
     id: 3,
     type: "hasStorage",
     yearly: true,
-    title: "Online Service",
+    title: "Additional Storage",
     costDesc: "$20/yr",
     tagLine: "Extra 1TB of cloud save",
   },
@@ -53,7 +53,7 @@ const addons = [
 ];
 
 export const RenderAddons = (props) => {
-  console.log("props", props);
+  // console.log("props", props);
 
   //   filter by type and yearly, only one match for each condition. So just return the 1st and only in the matched array
   // after that decide in the jsx if we want to return tagline or not. tagline is used in addons page.

@@ -11,7 +11,7 @@ export const Contact = () => {
     watch,
     formState: { errors },
   } = useForm({ defaultValues: state, mode: "onSubmit" });
-  const watchPassword = watch("password");
+  // const watchPassword = watch("password");
   const navigate = useNavigate();
 
   const saveData = (data) => {
@@ -33,6 +33,7 @@ export const Contact = () => {
         <Input
           {...register("name", { required: " name is required" })}
           id="name"
+          // defaultValues={state.name}
           style={errors?.name && { border: "2px solid red" }}
           // className={errors?.myInput?.message ? styles["error"] : "no-error"}
         />

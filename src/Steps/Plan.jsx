@@ -3,7 +3,7 @@
 import { useForm } from "react-hook-form";
 import { useNavigate, Link } from "react-router-dom";
 import { useAppState } from "../state";
-import { Button, Field, Form, Input, RenderCost } from "../Forms";
+import { Button, Field, Form, Input, RenderCost, Switch } from "../Forms";
 
 export const Plan = () => {
   const [state, setState] = useAppState();
@@ -43,66 +43,86 @@ export const Plan = () => {
       <h2>Select Your plan</h2>
       {/* </legend> */}
       <p>You have the option of monthly or yearly billing</p>
-      <Field label="Arcade">
-        {/* <Input
+      <div className="plans">
+        <div className="plan">
+          <Field label="Arcade" className="plan">
+            {/* <Input
             type="radiobutton"
             value="arcade"
             {...register("plan")}
             id="plan-arcade"
             // {defaultValues: true}
           /> */}
-        <Input
-          {...register("plan", { required: true })}
-          type="radio"
-          value="arcade"
-        />
-      </Field>
-      <RenderCost plan="arcade" yearBillingCycle={watch("yearBillingCycle")} />
-      <Field label="Advanced">
-        {/* <Input
+            <Input
+              {...register("plan", { required: true })}
+              type="radio"
+              value="arcade"
+            />
+          </Field>
+          <RenderCost
+            plan="arcade"
+            yearBillingCycle={watch("yearBillingCycle")}
+          />
+        </div>
+        <div className="plan">
+          <Field label="Advanced" className="plan">
+            {/* <Input
             type="checkbox"
             value="advanced"
             {...register("plan")}
             id="plan-advanced"
           /> */}
-        <Input
-          {...register("plan", { required: true })}
-          type="radio"
-          value="advanced"
-        />
-      </Field>
-      <RenderCost
-        plan="advanced"
-        yearBillingCycle={watch("yearBillingCycle")}
-      />
-
-      <Field label="Pro">
-        {/* <Input
-            type="checkbox"
+            <Input
+              {...register("plan", { required: true })}
+              type="radio"
+              value="advanced"
+            />
+          </Field>
+          <RenderCost
+            plan="advanced"
+            yearBillingCycle={watch("yearBillingCycle")}
+          />
+        </div>
+        {/* <div className="plan"> */}
+        <label id="pro" className="plan">
+          Pro
+          <img src="/assets/images/icon-pro.svg" alt="" />
+          {/* <Field label="Pro" className="plan"> */}
+          <Input
+            {...register("plan", { required: true })}
+            type="radio"
             value="pro"
-            {...register("plan")}
-            id="plan-pro"
-          /> */}
-        <Input
-          {...register("plan", { required: true })}
-          type="radio"
-          value="pro"
-        />
-      </Field>
-      <RenderCost plan="pro" yearBillingCycle={watch("yearBillingCycle")} />
-      <Field label="Monthly / Yearly">
-        <Input
-          type="checkbox"
-          // value={state.yearBillingCycle}
-          // defaultValue={false}
-          // onChange=
-          // value={state.yearBillingCycle}
-          {...register("yearBillingCycle")}
-          // defaultChecked
-          // {...setValue("yearBillingCycle", true)}
-          // {...setValue("yearBillingCycle")}
-        />
-      </Field>
+          />
+          {/* </Field> */}
+          <RenderCost plan="pro" yearBillingCycle={watch("yearBillingCycle")} />
+        </label>
+        {/* </div> */}
+      </div>
+
+      {/* <Field label="Monthly/Yearly"> */}
+      {/* <label htmlFor="yearBillingCycle">Monthly</label>
+      <Input
+        type="checkbox"
+        // value={state.yearBillingCycle}
+        // defaultValue={false}
+        // onChange=
+        // value={state.yearBillingCycle}
+        {...register("yearBillingCycle")}
+        // defaultChecked
+        // {...setValue("yearBillingCycle", true)}
+        // {...setValue("yearBillingCycle")}
+      />
+      <span>Yearly</span> */}
+      {/* </Field> */}
+
+      <Switch
+        register={register}
+        // watch={watch}
+        fieldName="yearBillingCycle"
+        defaultValues={state.yearBillingCycle}
+        labelA="Monthly"
+        labelB="Yearly"
+      />
 
       <div className="button-row">
         <Link className={`btn`} to="/">

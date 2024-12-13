@@ -106,13 +106,15 @@ input {
 }
 .container {
   max-width: 70rem;
-  margin: 2rem auto;
+  /* margin: 2rem auto; */
+  margin: 0 auto;
   background-color: var(--clr-neutral-100);
 }
 
 .split {
   display: flex;
   flex-direction: column;
+  background-color: var(--clr-neutral-300);
   /* gap: var(--spacer); */
 }
 
@@ -122,12 +124,19 @@ body {
   /* color that seems to inherit to most parts of the page */
   color: var(--clr-neutral-600);
   background-color: var(--clr-neutral-300);
-  min-height: 100vh;
+  /* min-height: calc(100vh - 2.1rem); */
+  /* position: relative; */
 }
 
 .nav-item {
   display: flex;
   align-items: center;
+}
+
+form {
+  background-color: lightsalmon;
+  margin: -2rem 1rem 1rem 1rem;
+  border-radius: var(--border-radius-lg);
 }
 
 .form-segment {
@@ -138,6 +147,27 @@ body {
 
 .form-label {
   align-self: self-start;
+}
+.plans {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacer);
+  margin-left: var(--spacer);
+  margin-right: var(--spacer);
+}
+.plan {
+  background-color: pink;
+  border: 1px solid green;
+  display: flex;
+  flex-direction: column;
+}
+
+.plan > img {
+  height: 2.5rem;
+}
+
+.plan input[type="radio"] {
+  /* opacity: 0; */
 }
 
 .btn {
@@ -171,10 +201,20 @@ body {
 .button-row {
   display: flex;
   justify-content: flex-end;
-  width: 100%;
+  width: 100vw;
+  /* 100% on desktop */
+  background-color: var(--clr-neutral-100);
+  /* position: absolute; */
+  /* in relation to viewport mobile */
+  position: fixed;
+  bottom: 0;
+  left: 0;
+
+  /* right: -1rem; */
 }
 .button-row > button {
   margin-left: auto;
+  /* margin-right: 1rem; */
 }
 
 /* typography */
@@ -276,6 +316,7 @@ h2 {
   .split {
     /* gap: 2rem; */
     grid-template-columns: 310px 1fr;
+    background-color: var(--clr-neutral-100);
   }
   .navbar-nav {
     flex-direction: column;
@@ -302,6 +343,15 @@ h2 {
   }
   .nav-circle {
     margin-right: var(--spacer);
+  }
+  form {
+    margin: 0 0 0 0;
+    position: relative;
+  }
+  .button-row {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
   }
 }
 

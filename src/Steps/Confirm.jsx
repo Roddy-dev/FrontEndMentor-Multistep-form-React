@@ -17,7 +17,7 @@ export const Confirm = () => {
   const { handleSubmit } = useForm({ defaultValues: state });
 
   const submitData = (data) => {
-    console.info(data);
+    // console.info(data);
     navigate("/thanks");
     // this is where we could submit to the server
   };
