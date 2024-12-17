@@ -24,6 +24,8 @@ export const Confirm = () => {
 
   // console.log(state);
 
+  console.log("state confirm", state);
+
   return (
     <Form onSubmit={handleSubmit(submitData)} className="flow-content">
       <h1 className="mb-4">Confirm</h1>

@@ -41,12 +41,7 @@ export const Addons = () => {
       {/* </legend> */}
       <p>Add-ons help enhance your gaming experience</p>
       <Field label="Online Services">
-        <Input
-          type="checkbox"
-          {...register("hasService")}
-          value={true}
-          onChange={onChange}
-        />
+        <Input type="checkbox" {...register("hasService")} value={true} />
       </Field>
       <RenderAddons
         servicesAdded="hasService"
