@@ -135,23 +135,34 @@ body {
 
 form {
   background-color: lightsalmon;
-  margin: -2rem 1rem 1rem 1rem;
+  margin: -2.5rem 1rem 1rem 1rem;
   border-radius: var(--border-radius-lg);
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+form h2,
+form p {
+  margin-left: var(--spacer);
+  margin-right: var(--spacer);
 }
 
 .form-segment {
   display: flex;
   flex-direction: column;
+  background-color: purple;
   /* align-items: left; */
 }
 
 .form-label {
   align-self: self-start;
 }
-.plans {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--spacer);
+.plans,
+.add-ons,
+section /* should this be here?*/ {
+  /* display: grid; */
+  /* grid-template-columns: repeat(3, 1fr); */
+  /* gap: var(--spacer); */
   margin-left: var(--spacer);
   margin-right: var(--spacer);
 }
@@ -184,6 +195,10 @@ form {
   border: none;
   /* background-color: var(--clr-accent-400); */
   /* color: var(--clr-neutral-900); */
+}
+
+.btn-prev:hover {
+  color: var(--clr-primary-900);
 }
 
 .btn-primary {
@@ -266,6 +281,7 @@ h2 {
   /* margin-left: var(--spacer); */
 }
 
+/* sidebar/navbar stepper */
 .nav-item > .active {
   background-color: var(--clr-primary-200);
   color: var(--clr-neutral-600);

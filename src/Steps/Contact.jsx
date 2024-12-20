@@ -8,9 +8,10 @@ export const Contact = () => {
   const {
     handleSubmit,
     register,
-    watch,
+    // watch,
     formState: { errors },
   } = useForm({ defaultValues: state, mode: "onSubmit" });
+  // console.log(useForm); //this will show available methods that we can destructure and use locally above
   // const watchPassword = watch("password");
   const navigate = useNavigate();
 

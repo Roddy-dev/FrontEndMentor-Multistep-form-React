@@ -40,37 +40,39 @@ export const Addons = () => {
       <h2>Pick Add-ons</h2>
       {/* </legend> */}
       <p>Add-ons help enhance your gaming experience</p>
-      <Field label="Online Services">
-        <Input type="checkbox" {...register("hasService")} value={true} />
-      </Field>
-      <RenderAddons
-        servicesAdded="hasService"
-        displayTagline={true}
-        yearly={state.yearBillingCycle}
-      />
-      <Field label="Addional Storage">
-        <Input type="checkbox" {...register("hasStorage")} value={true} />
-      </Field>
-      <RenderAddons
-        servicesAdded="hasStorage"
-        displayTagline={true}
-        yearly={state.yearBillingCycle}
-      />
-      <Field label="Customizable Profile">
-        <Input type="checkbox" {...register("hasProfile")} value={true} />
-      </Field>
-      <RenderAddons
-        servicesAdded="hasProfile"
-        // displayTagline={true}
-        yearly={state.yearBillingCycle}
-      />
-      <div className="button-row">
-        <Link className={`btn`} to="/plan">
-          Previous
-        </Link>
-        <Button>Next</Button>
+      <div className="add-ons">
+        <Field label="Online Services">
+          <Input type="checkbox" {...register("hasService")} value={true} />
+        </Field>
+        <RenderAddons
+          servicesAdded="hasService"
+          displayTagline={true}
+          yearly={state.yearBillingCycle}
+        />
+        <Field label="Addional Storage">
+          <Input type="checkbox" {...register("hasStorage")} value={true} />
+        </Field>
+        <RenderAddons
+          servicesAdded="hasStorage"
+          displayTagline={true}
+          yearly={state.yearBillingCycle}
+        />
+        <Field label="Customizable Profile">
+          <Input type="checkbox" {...register("hasProfile")} value={true} />
+        </Field>
+        <RenderAddons
+          servicesAdded="hasProfile"
+          displayTagline={true}
+          yearly={state.yearBillingCycle}
+        />
+        <div className="button-row">
+          <Link className={`btn btn-prev`} to="/plan">
+            Go Back
+          </Link>
+          <Button>Next</Button>
+        </div>
+        {/* </fieldset> */}
       </div>
-      {/* </fieldset> */}
     </Form>
   );
 };

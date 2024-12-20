@@ -23,7 +23,7 @@ const addons = [
     type: "hasStorage",
     yearly: false,
     title: "Additional Storage",
-    costDesc: "$2/mp",
+    costDesc: "$2/mo",
     tagLine: "Extra 1TB of cloud save",
   },
   {
@@ -80,7 +80,7 @@ export const RenderAddons = (props) => {
   return (
     <>
       <span>
-        {matchedAddon[0].title} {matchedAddon[0].costDesc}
+        {matchedAddon[0].title} +{matchedAddon[0].costDesc}
       </span>
     </>
   );
