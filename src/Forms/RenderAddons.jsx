@@ -80,7 +80,7 @@ export const RenderAddons = (props) => {
   return (
     <>
       <span>
-        {matchedAddon[0].title} +{matchedAddon[0].costDesc}
+        {matchedAddon[0].title} {matchedAddon[0].costDesc}
       </span>
     </>
   );
