@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 
 export const Section = ({ title, children, url }) => {
   return (
-    <div className="section mb-4">
-      <div className="title-row mb-4">
+    <div className="section">
+      <div className="title-row">
         <h4>{title}</h4>
         <Link className={`btn btn-secondary`} to={url}>
           Edit

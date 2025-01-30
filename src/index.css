@@ -90,7 +90,7 @@ img {
   display: block;
 }
 
-/* reset rhf border inset */
+/* reset react hook form border inset */
 input {
   border-style: solid;
 }
@@ -106,7 +106,6 @@ input {
 }
 .container {
   max-width: 70rem;
-  /* margin: 2rem auto; */
   margin: 0 auto;
   background-color: var(--clr-neutral-100);
 }
@@ -115,7 +114,6 @@ input {
   display: flex;
   flex-direction: column;
   background-color: var(--clr-neutral-300);
-  /* gap: var(--spacer); */
 }
 
 /* general styling */
@@ -124,8 +122,6 @@ body {
   /* color that seems to inherit to most parts of the page */
   color: var(--clr-neutral-600);
   background-color: var(--clr-neutral-300);
-  /* min-height: calc(100vh - 2.1rem); */
-  /* position: relative; */
 }
 
 .nav-item {
@@ -134,15 +130,15 @@ body {
 }
 
 form {
-  background-color: lightsalmon;
+  background-color: var(--clr-neutral-100);
   margin: -2.5rem 1rem 1rem 1rem;
   border-radius: var(--border-radius-lg);
   padding-top: 2rem;
   padding-bottom: 2rem;
+  max-width: 40rem;
 }
 
-form h2,
-form p {
+.summary-total {
   margin-left: var(--spacer);
   margin-right: var(--spacer);
 }
@@ -150,42 +146,151 @@ form p {
 .form-segment {
   display: flex;
   flex-direction: column;
-  background-color: purple;
-  /* align-items: left; */
 }
 
 .form-label {
   align-self: self-start;
 }
-.plans,
-.add-ons,
-section /* should this be here?*/ {
-  /* display: grid; */
-  /* grid-template-columns: repeat(3, 1fr); */
-  /* gap: var(--spacer); */
-  margin-left: var(--spacer);
-  margin-right: var(--spacer);
-}
-.plan {
-  background-color: pink;
-  border: 1px solid green;
+
+/* if looking for switch css, its in its own file */
+.plans {
   display: flex;
   flex-direction: column;
+  gap: var(--spacer);
 }
 
-.plan > img {
+/* plans page default state and styling */
+.plan {
+  position: relative;
+  background-color: var(--clr-neutral-100);
+  border: 1px solid;
+  border-color: var(--clr-neutral-400);
+  border-radius: var(--border-radius-sm);
+  padding: 1rem;
+  display: flex;
+  flex-direction: row;
+  min-width: 18ch;
+}
+/* plan changes visual state when clicked when clicked */
+.plan:has(#pro:checked),
+.plan:has(#advanced:checked),
+.plan:has(#arcade:checked) {
+  border-color: var(--clr-primary-700);
+  background-color: var(--clr-neutral-200);
+}
+
+.plan-label {
+  display: flex;
+  flex-direction: row;
+  gap: var(--spacer);
+}
+
+.plan * + * {
+  padding-top: var(--spacer);
+}
+
+.plan-label__text {
+  color: var(--clr-primary-900);
+}
+
+.plan-label__image {
+  margin-bottom: 2rem;
+  width: 2.5rem;
   height: 2.5rem;
 }
 
+/* remove the visual part of the radio button but still there 
+for screen readers */
 .plan input[type="radio"] {
-  /* opacity: 0; */
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  /* grow the radio button to make whole of parent selectable */
+  width: 100%;
+  height: 100%;
+}
+
+/* utility on used in one place to to hide text on mobile */
+.hide-on-mobile {
+  display: none;
+}
+
+/* add on cards  */
+.add-ons {
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+}
+
+.add-on-card {
+  border: 1px solid;
+  border-color: var(--clr-primary-700);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 0.25rem;
+  padding: 0.4rem;
+  border-radius: var(--border-radius-sm);
+}
+
+.add-on-card input[type="checkbox"] {
+  accent-color: var(--clr-primary-700);
+}
+
+.add-on-details p:first-of-type {
+  color: var(--clr-primary-900);
+  font-weight: 500;
+}
+
+.add-on-price {
+  margin-left: auto;
+  margin-right: 0.25rem;
+  color: var(--clr-primary-700);
+}
+
+/* on finishing up screen */
+.summary-table {
+  background-color: var(--clr-neutral-300);
+  margin-left: var(--spacer);
+  margin-right: var(--spacer);
+  border-radius: var(--border-radius-sm);
+}
+
+.summary-plan-flex,
+.summary-addons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.summary-plan,
+.summary-addons {
+  padding-left: var(--spacer);
+  padding-right: var(--spacer);
+
+  padding-top: var(--spacer);
+}
+.summary-addons:last-of-type {
+  padding-bottom: 2rem;
+}
+
+/* below for a horizontal rule */
+.summary-plan:after {
+  content: ""; /* This is necessary for the pseudo element to work. */
+  display: block; /*This will put the pseudo element on its own line. */
+  margin: 0 auto; /* This will center the border. */
+  width: 100%; /* Change this to whatever width you want. */
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid; /* This creates the border.  */
+  border-color: inherit;
 }
 
 .btn {
-  /* edit as you see fit */
   display: inline-block;
   text-decoration: none;
-  /* text-transform: uppercase; */
   letter-spacing: 0.1rem;
   font-weight: 700;
   font-size: 0.8rem;
@@ -193,8 +298,6 @@ section /* should this be here?*/ {
   padding: 0.75em 1.5em;
   border-radius: var(--border-radius-sm);
   border: none;
-  /* background-color: var(--clr-accent-400); */
-  /* color: var(--clr-neutral-900); */
 }
 
 .btn-prev:hover {
@@ -217,19 +320,15 @@ section /* should this be here?*/ {
   display: flex;
   justify-content: flex-end;
   width: 100vw;
-  /* 100% on desktop */
   background-color: var(--clr-neutral-100);
-  /* position: absolute; */
   /* in relation to viewport mobile */
   position: fixed;
   bottom: 0;
   left: 0;
-
-  /* right: -1rem; */
 }
+
 .button-row > button {
   margin-left: auto;
-  /* margin-right: 1rem; */
 }
 
 /* typography */
@@ -246,16 +345,32 @@ h2 {
   text-align: left;
 }
 
+/* error has some inline styles in jsx to make text red, would prefer this var to work at a later date */
 .error {
-  /* padding-left: auto; */
-  /* margin-right: 0; */
-  color: var(--clr-red-700);
+  /* color: var(--clr-red-700); */
   float: right;
 }
 
+form > h2,
+form > p,
+form > .form-segment,
+.plan-form > h2,
+.plan-form > p,
+.plans,
+.add-ons,
+.thanks-segment {
+  margin-left: var(--spacer);
+  margin-right: var(--spacer);
+}
+
 .form-segment > input {
-  line-height: 1.5rem;
-  border-radius: 5px;
+  line-height: 2rem;
+  border-radius: var(--border-radius-sm);
+  font-size: 1.25rem;
+}
+
+.form-segment {
+  margin-top: 2rem;
 }
 
 .form-segment > input:focus {
@@ -263,10 +378,14 @@ h2 {
   border-color: var(--clr-primary-700);
 }
 
-/* .navbar-nav {
-  display: flex;
-  align-items: center;
-} */
+.thanks-segment p {
+  line-height: 1.5;
+}
+.thanks-segment img {
+  padding-top: 2.5rem;
+}
+
+/* called navbar, but just a stepper indecator for the stages of the form */
 
 .nav-circle {
   display: flex;
@@ -294,14 +413,9 @@ h2 {
 }
 .nav-details {
   display: none;
-  /* flex-direction: column; */
 }
 
-/* main div of whole page */
-.app {
-}
-
-/* responsive sidebar */
+/* responsive sidebar, either above mobile or sidebar desktop*/
 .split {
   display: grid;
   gap: 1rem;
@@ -314,29 +428,23 @@ h2 {
 }
 
 .stepper {
-  /* width: 375px;
-  height: 172px; */
-  /* display: flex; */
-  /* background-image: url("./assets/images/bg-sidebar-mobile.svg"); */
   background-image: url("./assets/images/bg-sidebar-mobile.svg");
   background-repeat: no-repeat;
   background-size: cover;
   padding: 24px;
-  /* width: 100%; */
 }
 .navbar-nav > * + * {
   /* in this instance flow-content messes with mobile nav, so remove margin top */
 }
 
+/* below the desktop changes */
 @media (min-width: 480px) {
   .split {
-    /* gap: 2rem; */
     grid-template-columns: 310px 1fr;
     background-color: var(--clr-neutral-100);
   }
   .navbar-nav {
     flex-direction: column;
-    /* flex-wrap: wrap; see about this later doesn't wrap as expected */
   }
   .stepper {
     width: 274px;
@@ -346,24 +454,50 @@ h2 {
   .nav-details {
     display: block;
     text-align: left;
-    /* padding: var(--spacer); */
   }
   .container {
     margin-top: 5rem;
     border-radius: var(--border-radius-lg);
     padding: var(--spacer);
-    /* padding: 0 var(--spacer); */
-
-    /* padding: 0;
-    margin: 0; */
   }
+
   .nav-circle {
     margin-right: var(--spacer);
   }
+
   form {
     margin: 0 0 0 0;
     position: relative;
   }
+
+  .plan {
+    flex-direction: column;
+  }
+  .plans {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .plan-label {
+    flex-direction: column;
+  }
+
+  /* for use on plan 2months free label */
+  .hide-on-mobile {
+    color: var(--clr-primary-900);
+    display: block;
+  }
+
+  .add-on-card {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    padding: 1rem;
+  }
+  .add-on-card input[type="checkbox"] {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
   .button-row {
     position: absolute;
     width: 100%;
@@ -377,108 +511,3 @@ h2 {
     margin-top: 0;
   }
 }
-
-/* below is css from hook form tutorial - feel free to remove or repurpose classnames */
-
-/* body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-} */
-
-/* code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-} */
-
-/* .App {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 0 24px;
-  width: 900px;
-  margin: 0 auto;
-}
-
-fieldset {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  width: 600px;
-}
-
-.field {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin-bottom: 12px;
-}
-
-.section-row {
-  display: flex;
-  width: 100%;
-}
-
-.section-row div {
-  display: flex;
-  margin-bottom: 0.5rem;
-} */
-
-/* .section-row div:first-child {
-  width: 50%;
-}
-
-.section-row div:last-child {
-  width: 50%;
-} */
-
-/* .title-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-form {
-  width: 100%;
-}
-
-.submit-form {
-  display: flex;
-  margin: 24px 0 auto 0;
-}
-
-a.active {
-  color: red;
-}
-
-*/
-
-/*
-.stepper ol {
-  margin: 0;
-  padding: 0;
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-}
-
-.error {
-  display: flex;
-  width: 100%;
-  margin-top: 0.25rem;
-  font-size: 0.875em;
-  color: #dc3545;
-}
-
-label {
-  display: flex;
-}
-
-.button-row {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-} */

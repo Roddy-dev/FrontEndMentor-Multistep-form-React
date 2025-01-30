@@ -8,11 +8,9 @@ export const Contact = () => {
   const {
     handleSubmit,
     register,
-    // watch,
     formState: { errors },
   } = useForm({ defaultValues: state, mode: "onSubmit" });
   // console.log(useForm); //this will show available methods that we can destructure and use locally above
-  // const watchPassword = watch("password");
   const navigate = useNavigate();
 
   const saveData = (data) => {
@@ -21,22 +19,16 @@ export const Contact = () => {
   };
 
   return (
-    <Form
-      onSubmit={handleSubmit(saveData)}
-      className="flow-content flow-content--large"
-    >
-      {/* <fieldset> */}
-      {/* <legend> */}
+    <Form onSubmit={handleSubmit(saveData)} className="flow-content">
       <h2>Personal Info</h2>
-      {/* </legend> */}
       <p>Please provide your name, email address and phone number</p>
+      {/* field component was with react hook form, great for error functionality although found ut less useful
+       when rendering cost labels later */}
       <Field label="Name" error={errors?.name}>
         <Input
           {...register("name", { required: " name is required" })}
           id="name"
-          // defaultValues={state.name}
           style={errors?.name && { border: "2px solid red" }}
-          // className={errors?.myInput?.message ? styles["error"] : "no-error"}
         />
       </Field>
 
@@ -58,7 +50,6 @@ export const Contact = () => {
       <div className="button-row">
         <Button>Next</Button>
       </div>
-      {/* </fieldset> */}
     </Form>
   );
 };

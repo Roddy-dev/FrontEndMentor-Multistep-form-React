@@ -1,11 +1,6 @@
-// import { useNavigate } from "react-router-dom";
-
 export const Thanks = () => {
-  //   const [state, setState] = useAppState();
-  //   const navigate = useNavigate();
-
   return (
-    <div className="flow-content">
+    <div className="thanks-segment flow-content flow-content--large">
       <img src="./public/assets/images/icon-thank-you.svg" alt="" />
       <h2>Thank you!</h2>
       <p>

@@ -2,10 +2,8 @@ import React from "react";
 
 export const Field = ({ children, label, error }) => {
   const id = getChildId(children);
-  // console.log("form child", children);
 
   return (
-    // <div className="col-sm-12 mb-3 is this bootstrap? remove">
     <div className="form-segment">
       <label htmlFor={id} className="form-label">
         {label}

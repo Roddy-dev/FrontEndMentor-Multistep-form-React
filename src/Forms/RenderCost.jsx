@@ -1,5 +1,6 @@
-// here we want to return the cost / yearBillingCycle to be rendered in plan and confirm step
-// used in plan and confirm components
+// Here we want to return the cost / yearBillingCycle to be rendered in plan and confirm step
+// used in plan and confirm components. In future would move all this to data.js shared file
+// with single source of truth.
 
 const plans = [
   {
@@ -51,8 +52,5 @@ export const RenderCost = (props) => {
 
   const planDescription = matchedPlan[0]?.desc;
 
-  // console.log(matchedPlan);
-  // console.log(props);
-  return <span>{" " + planDescription ? planDescription : null}</span>;
-  //   return <>renderedcost here</>;
+  return <p>{" " + planDescription ? planDescription : null}</p>;
 };

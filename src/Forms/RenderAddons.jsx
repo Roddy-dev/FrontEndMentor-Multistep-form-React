@@ -1,5 +1,6 @@
 // here we store the cost of add on services for monthly and yearly.
-// see what we can create
+// my future self would use a data.js file for single source of truth
+//
 
 const addons = [
   {
@@ -38,7 +39,7 @@ const addons = [
     id: 4,
     type: "hasProfile",
     yearly: false,
-    title: "Customizable ptofile",
+    title: "Customizable profile",
     costDesc: "$2/mo",
     tagLine: "Custom theme on your profile",
   },
@@ -53,8 +54,6 @@ const addons = [
 ];
 
 export const RenderAddons = (props) => {
-  // console.log("props", props);
-
   //   filter by type and yearly, only one match for each condition. So just return the 1st and only in the matched array
   // after that decide in the jsx if we want to return tagline or not. tagline is used in addons page.
 
@@ -71,17 +70,18 @@ export const RenderAddons = (props) => {
   if (props?.displayTagline) {
     return (
       <>
-        <div>{matchedAddon[0]?.title}</div>
-        <div>{matchedAddon[0]?.tagLine}</div>
-        <div>{matchedAddon[0]?.costDesc}</div>
+        <div className="add-on-details">
+          <p>{matchedAddon[0]?.title}</p>
+          <p>{matchedAddon[0]?.tagLine}</p>
+        </div>
+        <p className="add-on-price">{matchedAddon[0]?.costDesc}</p>
       </>
     );
   }
   return (
     <>
-      <span>
-        {matchedAddon[0].title} {matchedAddon[0].costDesc}
-      </span>
+      <div>{matchedAddon[0].title}</div>
+      <div>{matchedAddon[0].costDesc}</div>
     </>
   );
 };

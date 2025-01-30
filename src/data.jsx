@@ -1,3 +1,5 @@
+// alternative store for render prices, would consider this a better direction in future.
+
 export const prices = [
   {
     type: "arcade",

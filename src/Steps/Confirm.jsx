@@ -3,18 +3,11 @@ import { useNavigate, Link } from "react-router-dom";
 import { useAppState } from "../state";
 
 import { prices } from "../data";
-import {
-  Button,
-  Form,
-  RenderCost,
-  RenderAddons,
-  Section,
-  SectionRow,
-} from "../Forms";
+import { Button, Form, RenderCost, RenderAddons } from "../Forms";
 import { useEffect, useState } from "react";
 
 export const Confirm = () => {
-  const [state] = useAppState();
+  const [state, setState] = useAppState();
   const navigate = useNavigate();
   const [total, setTotal] = useState(0);
 
@@ -22,13 +15,24 @@ export const Confirm = () => {
 
   useEffect(() => {
     calculateTotals(prices, state, setTotal);
-  }, [state.yearBillingCycle]);
+    // }, [state.yearBillingCycle]);may not be needed as "React guarantees that setState function identity is stable and won’t change on re-renders. This is why it’s safe to omit from the useEffect or useCallback dependency list."
+  });
 
   const { handleSubmit } = useForm({ defaultValues: state });
 
   const submitData = (data) => {
     navigate("/thanks");
+    console.log("data", data);
     // this is where we could submit to the server
+  };
+
+  const handleChangeYear = (data) => {
+    if (state.yearBillingCycle !== true) {
+      data.yearBillingCycle = true;
+    } else {
+      data.yearBillingCycle = false;
+    }
+    setState({ ...state, ...data });
   };
 
   const calculateTotals = (prices, state, setTotal) => {
@@ -46,12 +50,11 @@ export const Confirm = () => {
     //
 
     // filter relevant keys to associated costs in prices data file
-    let matchedPrices = prices.filter((pricedItem) =>
+    const matchedPrices = prices.filter((pricedItem) =>
       relevantKeys.includes(pricedItem.type)
     );
     // map prices that are relevant and stuff yearly or monthly in array
-    let workingTotalArr = matchedPrices.map((itemLine) => {
-      // return itemLine.priceMY.monthly;
+    const workingTotalArr = matchedPrices.map((itemLine) => {
       if (state.yearBillingCycle == true) {
         return itemLine.priceMY.yearly;
       } else {
@@ -60,7 +63,7 @@ export const Confirm = () => {
     });
 
     // then do array reduce to get total
-    let totalToDisplay = workingTotalArr.reduce((acc, num) => acc + num);
+    const totalToDisplay = workingTotalArr.reduce((acc, num) => acc + num);
 
     // use setTotal so that react will rerender total to screen
     setTotal(totalToDisplay);
@@ -70,82 +73,65 @@ export const Confirm = () => {
     <Form onSubmit={handleSubmit(submitData)} className="flow-content">
       <h2 className="mb-4">Finishing up</h2>
       <p>Double-check everything looks OK before confirming</p>
-      <Section title="Personal info" url="/">
-        <SectionRow>
-          <div>Full name</div>
-          <div>{state.name}</div>
-        </SectionRow>
-        <SectionRow>
-          <div>Email</div>
-          <div>{state.email}</div>
-        </SectionRow>
-        <SectionRow>
-          <div>Last name</div>
-          <div>{state.phoneno}</div>
-        </SectionRow>
-      </Section>
-      <Section title="Plan" url="/plan">
-        <SectionRow>
-          <div>Plan</div>
-          <div>
-            {state.plan?.charAt(0).toUpperCase() + state.plan?.slice(1)}
-            <>&nbsp;</>
+      <div className="summary-table flow-content">
+        <div className="summary-plan">
+          <div className="summary-plan-flex">
+            <div className="">
+              {state.plan?.charAt(0).toUpperCase() + state.plan?.slice(1)}
+              <>&nbsp;</>
+              {state.yearBillingCycle ? "(Yearly)" : "(Monthly)"}
+              <p>
+                <Link onClick={handleChangeYear}>Change</Link>
+              </p>
+            </div>
+            <div>
+              <RenderCost
+                plan={state.plan}
+                yearBillingCycle={state.yearBillingCycle}
+                className="confirm-cost"
+              />
+            </div>
+          </div>
+        </div>
 
-            <RenderCost
-              plan={state.plan}
-              yearBillingCycle={state.yearBillingCycle}
-              // addupTotals={addupTotals}
+        <div className="summary-addons">
+          {state.hasService ? (
+            <RenderAddons
+              servicesAdded="hasService"
+              yearly={state.yearBillingCycle}
+              className="confirm-cost"
             />
-          </div>
-        </SectionRow>
-        <SectionRow>
-          <div>Monthly or Yearly payment</div>
-          <div>{state.yearBillingCycle ? "yearly" : "monthly"}</div>
-        </SectionRow>
-      </Section>
-      <Section title="Add-ons" url="/addons">
-        <SectionRow>
-          {/* <ul>
-            {state.servicesAdded.map(
-              (item, index) => item && <li key={index}>{item}</li>
-            )}
-          </ul> */}
-          <div>
-            {state.hasService ? (
-              <RenderAddons
-                servicesAdded="hasService"
-                yearly={state.yearBillingCycle}
-              />
-            ) : null}
-          </div>
-          <div>
-            {state.hasStorage ? (
-              <RenderAddons
-                servicesAdded="hasStorage"
-                yearly={state.yearBillingCycle}
-              />
-            ) : null}
-          </div>
-          <div>
-            {state.hasProfile ? (
-              <RenderAddons
-                servicesAdded="hasProfile"
-                yearly={state.yearBillingCycle}
-              />
-            ) : null}
-          </div>
-        </SectionRow>
-        {console.log(state)}
-      </Section>
-      {/* <div className="d-flex justify-content-start">
-        <Button className={`btn btn-secondary`}>Submit</Button>
-      </div> */}
-      {/* <PriceContext.Provider value={prices}>
-        <h1>{prices}</h1>
-      </PriceContext.Provider> */}
-      <div>
-        Total {total}{" "}
-        {state.yearBillingCycle == true ? "per Year" : "per month"}
+          ) : null}
+        </div>
+        <div className="summary-addons">
+          {state.hasStorage ? (
+            <RenderAddons
+              servicesAdded="hasStorage"
+              yearly={state.yearBillingCycle}
+              className="confirm-cost"
+            />
+          ) : null}
+        </div>
+        <div className="summary-addons">
+          {state.hasProfile ? (
+            <RenderAddons
+              servicesAdded="hasProfile"
+              yearly={state.yearBillingCycle}
+              className="confirm-cost"
+            />
+          ) : null}
+        </div>
+      </div>
+      {/* end of summary table */}
+      <div className="summary-total">
+        <span>
+          Total {state.yearBillingCycle == true ? "(per Year)" : "(per month)"}
+        </span>
+
+        <span className="confirm-cost">
+          {"$ " + total}
+          {state.yearBillingCycle == true ? "/yr" : "/mth"}
+        </span>
       </div>
       <div className="button-row">
         <Link className={`btn btn-prev`} to="/addons">

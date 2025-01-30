@@ -1,3 +1,5 @@
+/* decided to do in own file as example of avoiding naming conflicts */
+
 .section-row.switch {
   display: flex;
   flex-direction: row;
@@ -18,7 +20,6 @@ input:where([type="checkbox"][role="switch"]) {
   outline: none;
   border-color: var(--clr-primary-900, navy);
   background-color: var(--clr-primary-900, navy);
-  /* background-color: inherit; */
   -webkit-appearance: none;
   transition: background 1s;
   margin-left: 0.5rem;
