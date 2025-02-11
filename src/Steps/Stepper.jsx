@@ -11,14 +11,11 @@ export const Stepper = () => {
     );
   };
 
-  // console.log("location", location);
-
   // const getLinkClass = ({ isActive }) =>
   //   `nav-link ${isActive ? "active" : undefined}`;
 
   return (
     <nav className="stepper navbar">
-      {/* <div className="navbar-collapse collapse"> */}
       <ol className="navbar-nav flow-content flow-content--large">
         <li className="step nav-item">
           <div className={getLinkClass("/")}>1</div>
@@ -49,7 +46,6 @@ export const Stepper = () => {
           </div>
         </li>
       </ol>
-      {/* </div> */}
     </nav>
   );
 };

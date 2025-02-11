@@ -1,4 +1,3 @@
-/* change later to ubuntu font and see about gdpr solution */
 @font-face {
   font-family: "Ubuntu";
   font-style: normal;
@@ -347,7 +346,7 @@ h2 {
 
 /* error has some inline styles in jsx to make text red, would prefer this var to work at a later date */
 .error {
-  /* color: var(--clr-red-700); */
+  color: var(--clr-red-700);
   float: right;
 }
 

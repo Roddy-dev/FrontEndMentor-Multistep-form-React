@@ -7,7 +7,6 @@ export const Switch = (props) => {
     props;
   const [isChecked, setIsChecked] = useState(false);
   console.log("default", defaultValues);
-  // const [isChecked, setIsChecked] = useState(state.{fieldName});
 
   // if IsChecked true then labelB can be targetted in css
 
