@@ -39,7 +39,7 @@ export const Plan = () => {
           <div className="plan">
             <label htmlFor="arcade" className="plan-label">
               <img
-                src="/assets/images/icon-arcade.svg"
+                src="./assets/images/icon-arcade.svg"
                 alt=""
                 className="plan-label__image"
               />
@@ -69,7 +69,7 @@ export const Plan = () => {
           <div className="plan">
             <label htmlFor="advanced" className="plan-label">
               <img
-                src="/assets/images/icon-advanced.svg"
+                src="./assets/images/icon-advanced.svg"
                 alt=""
                 className="plan-label__image"
               />
@@ -99,7 +99,7 @@ export const Plan = () => {
           <div className="plan">
             <label htmlFor="pro" className="plan-label">
               <img
-                src="/assets/images/icon-pro.svg"
+                src="./assets/images/icon-pro.svg"
                 alt=""
                 className="plan-label__image"
               />
