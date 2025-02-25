@@ -41,6 +41,8 @@ Screenshots are listed in the screenshot folder. All were captured from Firefox.
 
 ## My process
 
+[Live Demo](https://roddy-dev.github.io/FrontEndMentor-Multistep-form-React/)
+
 I initially read about React hook form from an article by Robin Wieruth (The road to react book). This seemed to me a perfect opportunity to try this out with the front end mentor project here.
 
 For the CSS I had a main index.css file using the principles learned from Kevin Powells CSS demystified course to do the bulk of the styling. I used inline styles in the jsx for error handling and also a standalone CSS file only concerned with a switch component. This was for for ease of maintainence and avoiding naming clashes.
